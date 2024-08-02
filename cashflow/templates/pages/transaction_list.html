@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% block title %}Transactions{% endblock %}
+
+{% block content %}
+<h1>Transactions</h1>
+<a href="{% url 'transaction_create' %}" class="btn btn-primary mb-3">Add Transaction</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Section</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.id }}</td>
+            <td>{{ transaction.section.name }}</td>
+            <td>{{ transaction.description }}</td>
+            <td>{{ transaction.date }}</td>
+            <td>{{ transaction.amount | floatformat:2|intcomma |default:"0.00" }}</td>
+            <td>
+                <a href="{% url 'transaction_update' transaction.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'transaction_delete' transaction.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

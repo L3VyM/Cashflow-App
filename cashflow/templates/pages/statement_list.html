@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% block title %}Cash Flow Statements{% endblock %}
+
+{% block content %}
+<h1>Cash Flow Statements</h1>
+<a href="{% url 'statement_create' %}" class="btn btn-primary mb-3">Add Statement</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Change in Cash</th>
+            <th>Beginning Balance</th>
+            <th>Ending Balance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for statement in statements %}
+        <tr>
+            <td>{{ statement.id }}</td>
+            <td>{{ statement.change_in_cash | floatformat:2|intcomma |default:"0.00" }}</td>
+            <td>{{ statement.beginning_balance | floatformat:2|intcomma |default:"0.00"}} </td>
+            <td>{{ statement.ending_balance | floatformat:2|intcomma |default:"0.00" }}</td>
+            <td>
+                <a href="{% url 'statement_detail' statement.id %}" class="btn btn-info btn-sm">View</a>
+                <a href="{% url 'statement_delete' statement.pk %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Sections</h5>
+                    <p class="card-text">Create, update, and delete cash flow sections.</p>
+                    <a href="{% url 'section_list' %}" class="btn btn-primary">Go to Sections</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Transactions</h5>
+                    <p class="card-text">Create, update, and delete transactions.</p>
+                    <a href="{% url 'transaction_list' %}" class="btn btn-primary">Go to Transactions</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">View Statements</h5>
+                    <p class="card-text">View and generate cash flow statements.</p>
+                    <a href="{% url 'statement_list' %}" class="btn btn-primary">Go to Statements</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

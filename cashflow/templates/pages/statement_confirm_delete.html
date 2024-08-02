@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Delete Cash Flow Statement{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Delete Cash Flow Statement</h1>
+    <p>Are you sure you want to delete the cash flow statement "{{ statement.id }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'statement_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock content %}
